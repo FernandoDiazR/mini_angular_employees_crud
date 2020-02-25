@@ -1,7 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-
 const API_ENDPOINT = 'http://localhost:3000/api/employees';
 
 exports.handler = async (event, context) => {
-  return HttpClient.get(API_ENDPOINT);
+  return await (fetch(API_ENDPOINT)
+  .then(response => response.json())
+  .then(data => ({
+    statusCode: 200,
+    body: data
+  }))
+  .catch(error => ({ statusCode: 422, body: String(error) })));
 };
