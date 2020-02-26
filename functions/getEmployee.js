@@ -1,3 +1,4 @@
+const fetch = require('node-fetch');
 const API_ENDPOINT = 'http://localhost:3000/api/employees';
 
 exports.handler = async (event, context) => {
