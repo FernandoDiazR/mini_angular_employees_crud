@@ -4,6 +4,16 @@ const API_ENDPOINT = process.env.API_ENDPOINT;
 
 exports.handler = (event, context, callback) => {
   axios.get(API_ENDPOINT).then(res => {
+    let employees = [];
+    res.data.data.forEach(employee => {
+      employees.push({
+        _id: employee._id,
+        name: employee.employee_name,
+        position: '',
+        office: employee.employee_age,
+        salary: employee.employee_salary,
+      })
+    });
     callback(null, {
       statusCode: 200,
       body: JSON.stringify({
