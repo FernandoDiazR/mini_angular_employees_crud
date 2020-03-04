@@ -17,7 +17,7 @@ export class EmployeeService {
   }
 
   getEmployee() {
-    return this.http.get(this.URL_API + 'getEmployee');
+    return this.http.get(this.URL_API + 'employees');
   }
 
   postEmployee(employee: Employee) {
