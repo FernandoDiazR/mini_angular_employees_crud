@@ -1,11 +1,11 @@
-const fetch = require('node-fetch')
+const axios = require('axios').default;
 
 const API_ENDPOINT = 'http://dummy.restapiexample.com/api/v1/employees'
 
 exports.handler = async (event, context) => {
   let response
   try {
-    response = await fetch(API_ENDPOINT)
+    response = await axios.get(API_ENDPOINT);
     // handle response
   } catch (err) {
     return {
