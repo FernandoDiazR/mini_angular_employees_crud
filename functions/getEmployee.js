@@ -1,12 +1,25 @@
-const fetch = require('node-fetch');
-const API_ENDPOINT = 'http://dummy.restapiexample.com/api/v1/employees';
+const fetch = require('node-fetch')
+
+const API_ENDPOINT = 'https://cat-fact.herokuapp.com/facts'
 
 exports.handler = async (event, context) => {
-  return await (fetch(API_ENDPOINT)
-  .then(response => response.json())
-  .then(data => ({
+  let response
+  try {
+    response = await fetch(API_ENDPOINT)
+    // handle response
+  } catch (err) {
+    return {
+      statusCode: err.statusCode || 500,
+      body: JSON.stringify({
+        error: err.message
+      })
+    }
+  }
+
+  return {
     statusCode: 200,
-    body: data
-  }))
-  .catch(error => ({ statusCode: 422, body: String(error) })));
-};
+    body: JSON.stringify({
+      data: response
+    })
+  }
+}
