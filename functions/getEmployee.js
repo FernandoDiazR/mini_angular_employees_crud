@@ -1,6 +1,6 @@
 const axios = require('axios');
 if(process.env.NODE_ENV !== 'production') require('dotenv').config();
-const API_ENDPOINT = process.env.AWS_API_ENDPOINT + '/api/employees';
+const API_ENDPOINT = process.env.AWS_API_ENDPOINT + 'api/employees';
 
 exports.handler = (event, context, callback) => {
   axios.get(API_ENDPOINT).then(res => {
