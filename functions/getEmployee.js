@@ -1,6 +1,6 @@
 const axios = require('axios').default;
 
-const API_ENDPOINT = 'http://dummy.restapiexample.com/api/v1/employees'
+const API_ENDPOINT = 'https://jsonplaceholder.typicode.com/todos';
 
 exports.handler = async (event, context) => {
   let response
@@ -18,8 +18,8 @@ exports.handler = async (event, context) => {
 
   return {
     statusCode: 200,
-    body: JSON.stringify({
-      data: response
-    })
+    body: {
+      data: response.data
+    }
   }
 }
