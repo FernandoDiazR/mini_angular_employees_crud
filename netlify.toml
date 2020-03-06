@@ -1,0 +1,3 @@
+[build]
+  functions = "lambda"
+  environment = { NODE_ENV = "development" }
