@@ -1,8 +1,12 @@
 const axios = require('axios');
-if(process.env.NODE_ENV !== "production") require('dotenv').config();
-const API_ENDPOINT = process.env.AWS_API_ENDPOINT + '/api/employees';
+const isProdMode = (process.env.NODE_ENV === "production");
+if (!isProdMode) require('dotenv').config();
 
-export async function handler(event, context, callback){
+
+let API_ENDPOINT = isProdMode ? process.env.AWS_API_ENDPOINT : process.env.TEST_API_ENDPOINT;
+API_ENDPOINT+= '/api/employees';
+
+export async function handler(event, context, callback) {
   let res;
   try {
     res = await axios.get(API_ENDPOINT);
@@ -13,7 +17,7 @@ export async function handler(event, context, callback){
         error: err.message
       }),
     }
-  } 
+  }
   return {
     statusCode: 200,
     body: JSON.stringify(res.data),

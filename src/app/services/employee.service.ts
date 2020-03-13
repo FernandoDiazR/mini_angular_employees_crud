@@ -10,14 +10,14 @@ export class EmployeeService {
 
   selectedEmployee: Employee;
   employees: Employee[];
-  readonly URL_API = '/.netlify/functions/';
+  readonly URL_API = '/.netlify/functions';
 
   constructor(private http: HttpClient) {
     this.selectedEmployee = new Employee();
   }
 
   getEmployee() {
-    return this.http.get(this.URL_API + 'employees');
+    return this.http.get(this.URL_API + '/employees');
   }
 
   postEmployee(employee: Employee) {
