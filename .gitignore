@@ -46,3 +46,4 @@ testem.log
 Thumbs.db
 .env
 src/lambda/node_modules
+lambda/*
