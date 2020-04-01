@@ -1,13 +1,16 @@
 const axios = require('axios');
-const isProdMode = (process.env.NODE_ENV === "production");
-if (!isProdMode) require('dotenv').config();
+if (process.env.NODE_ENV !== "production") {
+  require('dotenv').config();
+};
 
 
-let API_ENDPOINT = isProdMode ? process.env.AWS_API_ENDPOINT : process.env.TEST_API_ENDPOINT;
-API_ENDPOINT+= '/api/employees';
+const API_ENDPOINT = `${(process.env.NODE_ENV === "production" ?
+process.env.AWS_API_ENDPOINT : process.env.TEST_API_ENDPOINT)}/api/employees`;
 
 export async function handler(event, context, callback) {
   let res;
+  console.log("REQUESTED_ENDPOINT=", API_ENDPOINT);
+  console.log("ENV=", process.env.NODE_ENV);
   try {
     res = await axios.get(API_ENDPOINT);
   } catch (err) {
