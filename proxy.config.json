@@ -1,6 +1,11 @@
 {
-    "/.netlify/functions": {
-      "target": "http://localhost:9000",
-      "secure": false
+    "/test/api/*": {
+      "target": "http://localhost:3000",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "pathRewrite": {
+        "^/test/api": "/api"
+      }
     }
   }

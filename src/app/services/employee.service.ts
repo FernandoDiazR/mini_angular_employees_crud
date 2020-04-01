@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Employee } from '../models/employee';
-
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class EmployeeService {
 
   selectedEmployee: Employee;
   employees: Employee[];
-  readonly URL_API = '/.netlify/functions';
+  readonly URL_API = environment.production ? '/.netlify/functions' : 'test/api' ;
 
   constructor(private http: HttpClient) {
     this.selectedEmployee = new Employee();
